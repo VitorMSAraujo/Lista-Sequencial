@@ -3,10 +3,10 @@
 #include <fstream>
 
 int main() {
+    ListaSequencial lista(100); // Criando uma lista com capacidade 100
+    std::ifstream entrada("entrada.txt");
+    std::ofstream saida("saida_teste.txt");
 
-    ListaSequencial lista(100);  // Cria uma lista com 100 elementos
-
-    std::ifstream entrada("entrada.txt");  // Lê comandos de um arquivo
     if (!entrada) {
         std::cerr << "Erro ao abrir entrada.txt" << std::endl;
         return 1;
@@ -16,18 +16,54 @@ int main() {
     int posicao, valor;
 
     while (entrada >> comando) {
-        if (comando == 'I') {  // Inserir
-            entrada >> posicao >> valor;
-            lista.insereElemento(posicao, valor);
-        } else if (comando == 'P') {  // Printar elemento
-            entrada >> posicao;
-            std::cout << "Elemento " << posicao << ": " << lista.procuraElemento(posicao) << std::endl;
-        } else if (comando == 'R') {  // Remover
-            entrada >> posicao;
-            lista.removeElemento(posicao);
+        switch (comando) {
+            case 'I': // Inserir
+                entrada >> posicao >> valor;
+                if (lista.insereElemento(posicao, valor)) {
+                    saida << "Elemento " << valor << " inserido na posição " << posicao << std::endl;
+                } else {
+                    saida << "Falha ao inserir elemento " << valor << " na posição " << posicao << std::endl;
+                }
+                break;
+
+            case 'P': // Printar elemento
+                entrada >> posicao;
+                if (lista.getElemento(posicao) != -1) {
+                    saida << "Elemento na posição " << posicao << ": " << lista.getElemento(posicao) << std::endl;
+                } else {
+                    saida << "Posição inválida para obtenção: " << posicao << std::endl;
+                }
+                break;
+
+            case 'R': // Remover elemento
+                entrada >> posicao;
+                if (lista.removeElemento(posicao)) {
+                    saida << "Elemento na posição " << posicao << " removido" << std::endl;
+                } else {
+                    saida << "Falha ao remover elemento na posição " << posicao << std::endl;
+                }
+                break;
+
+            case 'T': // Tamanho da lista
+                saida << "Tamanho atual da lista: " << lista.getTamanho() << std::endl;
+                break;
+
+            case 'F': // Verificar se está cheia
+                saida << "Lista cheia? " << (lista.cheia() ? "Sim" : "Não") << std::endl;
+                break;
+
+            case 'V': // Verificar se está vazia
+                saida << "Lista vazia? " << (lista.vazia() ? "Sim" : "Não") << std::endl;
+                break;
+
+            default:
+                saida << "Comando inválido: " << comando << std::endl;
+                break;
         }
     }
 
     entrada.close();
+    saida.close();
+    
     return 0;
 }
