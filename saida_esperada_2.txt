@@ -1,0 +1,16 @@
+Elemento 50 inserido na posição 1
+Elemento 40 inserido na posição 2
+Elemento 30 inserido na posição 3
+Elemento 20 inserido na posição 4
+Elemento 10 inserido na posição 5
+Elemento na posição 5: 10
+Elemento na posição 3 modificado para 99
+Elemento na posição 3: 99
+Elemento 50 encontrado na posição 1
+Elemento 5 encontrado na posição 6
+Elemento na posição 1 removido
+Elemento na posição 4 removido
+Elemento na posição 1: 40
+Tamanho atual da lista: 5
+Lista cheia? Não
+Lista vazia? Não

@@ -2,14 +2,13 @@
 #include <iostream>
 #include <fstream>
 
-int main() {
-    ListaSequencial lista(100); // Criando uma lista com capacidade 100
-    std::ifstream entrada("entrada.txt");
-    std::ofstream saida("saida_teste.txt");
+void processarArquivo(const std::string& arquivoEntrada, const std::string& arquivoSaida, ListaSequencial& lista) {
+    std::ifstream entrada(arquivoEntrada);
+    std::ofstream saida(arquivoSaida);
 
     if (!entrada) {
-        std::cerr << "Erro ao abrir entrada.txt" << std::endl;
-        return 1;
+        std::cerr << "Erro ao abrir " << arquivoEntrada << std::endl;
+        return;
     }
 
     char comando;
@@ -85,6 +84,14 @@ int main() {
 
     entrada.close();
     saida.close();
-    
+}
+
+int main() {
+    ListaSequencial lista(100); // Criando uma lista com capacidade 100
+
+    // Processando os dois arquivos de entrada
+    processarArquivo("entrada.txt", "saida_teste.txt", lista);
+    processarArquivo("entrada_2.txt", "saida_teste_2.txt", lista);
+
     return 0;
 }
