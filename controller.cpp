@@ -17,7 +17,7 @@ int main() {
 
     while (entrada >> comando) {
         switch (comando) {
-            case 'I': // Inserir
+            case 'I': // Inserir elemento
                 entrada >> posicao >> valor;
                 if (lista.insereElemento(posicao, valor)) {
                     saida << "Elemento " << valor << " inserido na posição " << posicao << std::endl;
@@ -28,10 +28,21 @@ int main() {
 
             case 'P': // Printar elemento
                 entrada >> posicao;
-                if (lista.getElemento(posicao) != -1) {
-                    saida << "Elemento na posição " << posicao << ": " << lista.getElemento(posicao) << std::endl;
+                valor = lista.getElemento(posicao);
+                if (valor != -1) {
+                    saida << "Elemento na posição " << posicao << ": " << valor << std::endl;
                 } else {
                     saida << "Posição inválida para obtenção: " << posicao << std::endl;
+                }
+                break;
+
+            case 'M': // Modificar elemento
+                entrada >> posicao >> valor;
+                if (posicao > 0 && posicao <= lista.getTamanho()) {
+                    lista.setElemento(posicao, valor);
+                    saida << "Elemento na posição " << posicao << " modificado para " << valor << std::endl;
+                } else {
+                    saida << "Posição inválida para modificação: " << posicao << std::endl;
                 }
                 break;
 
@@ -54,6 +65,16 @@ int main() {
 
             case 'V': // Verificar se está vazia
                 saida << "Lista vazia? " << (lista.vazia() ? "Sim" : "Não") << std::endl;
+                break;
+
+            case 'E': // Procurar elemento
+                entrada >> valor;
+                posicao = lista.procuraElemento(valor);
+                if (posicao != -1) {
+                    saida << "Elemento " << valor << " encontrado na posição " << posicao << std::endl;
+                } else {
+                    saida << "Elemento " << valor << " não encontrado na lista" << std::endl;
+                }
                 break;
 
             default:

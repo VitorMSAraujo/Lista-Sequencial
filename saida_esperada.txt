@@ -2,6 +2,10 @@ Elemento 5 inserido na posição 1
 Elemento 10 inserido na posição 2
 Elemento 15 inserido na posição 3
 Elemento na posição 2: 10
+Elemento na posição 2 modificado para 20
+Elemento na posição 2: 20
+Elemento 15 encontrado na posição 3
+Elemento 100 não encontrado na lista
 Elemento na posição 2 removido
 Elemento na posição 2: 15
 Tamanho atual da lista: 2

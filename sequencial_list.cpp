@@ -8,7 +8,7 @@ ListaSequencial::ListaSequencial(int tamanho) {
 
 ListaSequencial::~ListaSequencial() {
     delete[] dados;
-    std::cout << "Lista destruída" << std::endl;
+
 }
 
 bool ListaSequencial::vazia() {
@@ -32,22 +32,22 @@ int ListaSequencial::getTamanho() {
 }
 
 int ListaSequencial::getElemento(int pos) {
-    int dado;
-    if((pos > tamanho_atual) || (pos <= 0)) { //Verifica se a posição é válida
-        return dados[pos-1];
-    } else {
+    if (pos <= 0 || pos > tamanho_atual) {  //Verifica se a posição é válida
         return -1;
     }
+    return dados[pos - 1];  
 }
 
+
 void ListaSequencial::setElemento(int pos, int elemento) {
-    if((pos > tamanho_atual) || (pos <= 0)) { //Verifica se a posição é válida
-        dados[pos-1] = elemento;
+    if (pos > 0 && pos <= tamanho_atual) { //Verifica se a posição é válida
+        dados[pos-1] = elemento; 
     }
 }
 
+
 int ListaSequencial::procuraElemento(int elemento) {
-    for(int i = 0; i < tamanho_atual; i++) {
+    for(int i = 0; i < tamanho_atual; i++) { //Percorre a lista
         if(dados[i] == elemento) {
             return i+1;
         }
@@ -76,7 +76,7 @@ bool ListaSequencial::removeElemento(int pos) {
     
     dado = dados[pos-1];
     
-    for(int i = pos-1; i < tamanho_atual-1; i++) {
+    for(int i = pos-1; i < tamanho_atual-1; i++) { //Percorre a lista
         dados[i] = dados[i+1];
     }
     tamanho_atual--;
